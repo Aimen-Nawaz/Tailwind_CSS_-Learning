@@ -6,8 +6,8 @@ import Product from '../Product/Product'
 const PageLayout = () => {
     return (
         <div className='w-full min-h-screen flex flex-col items-start justify-start'>
-<Navbar/>
-    
+            <Navbar />
+
             <Outlet />
 
         </div>

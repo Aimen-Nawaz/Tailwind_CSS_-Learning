@@ -1,20 +1,68 @@
+import { ShoppingCart } from 'lucide-react'
 import React from 'react'
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
+import { useCart } from '../../context/CartContext'
+import CartItemCard from '../Cart/CartItemCard'
 
 const Navbar = () => {
+    const { totalPrice, cartItems } = useCart();
     return (
         <header className='w-full px-3 py-3 bg-black opacity-50 '>
-            <div className='w-full max-w-7xl mx-auto flex items-center justify-between gap-4'>
-                <h1 className='text-white'>Product App</h1>
-                <ul className='flex items-center justify-between gap-3 text-white'>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/products'>Products</Link></li>
-                    <li><Link to='/Posts'>Posts</Link></li>
-                    <li><Link to='/users'>Users</Link></li>
-                </ul>
-            </div>
+            <Sheet>
+                <div className='w-full max-w-7xl mx-auto flex items-center justify-between gap-4'>
+                    <h1 className='text-white'>Product App</h1>
+
+                    <ul className='flex items-center justify-between gap-3 text-white'>
+                        <li><SheetTrigger asChild><ShoppingCart /></SheetTrigger></li>
+                        <li><Link to='/'>Home</Link></li>
+                        <li><Link to='/products'>Products</Link></li>
+                        <li><Link to='/Posts'>Posts</Link></li>
+                        <li><Link to='/users'>Users</Link></li>
+                        <li><Link to='/form'>Forms</Link></li>
+                        <li><Link to='/registration'>Form</Link></li>
+                      
+                    </ul>
+                </div>
+                <SheetContent className="bg-background text-foreground border-l border-border">
+                    <SheetHeader>
+                        <SheetTitle>Shoping Cart</SheetTitle>
+                        <SheetDescription>
+                            Your selected items in the cart. You can remove items or proceed to checkout.
+                        </SheetDescription>
+                    </SheetHeader>
+                    <div className={`w-full h-full flex items-center ${cartItems.length > 0 ? "flex-col justify-start" : "justify-center"}`}>
+                        {(!cartItems || cartItems.length === 0) && (
+                            <h1 className='text-2xl font-bold'>Cart is empty</h1>
+                        )}
+                        {
+                            cartItems?.map((item) => (
+                                <CartItemCard key={item.id} item={item} />
+                            ))
+                        }
+                    </div>
+                    <div className=' w-full flex items-center justify-between flex-col gap-2'>
+                        <div className="w-full p-4 rounded-md border border-zinc-600 bg-secondary flex items-center justify-between">
+
+                            <p className="text-lg font-semibold text-foreground">
+                                Grand Total
+                            </p>
+
+                            <p className="text-2xl font-bold text-emerald-400">
+                                ${totalPrice.toFixed(0)}
+                            </p>
+
+                        </div>
+
+                        <Button className="px-6 w-full rounded-md py-6 text-lg items-center text-white hover:bg-green-600" onClick={() => toast.success('Proceeding to checkout...')}>
+                            Proceed to Checkout
+                        </Button>
+                    </div>
+                </SheetContent>
+            </Sheet>
         </header>
-     
+
 
     )
 }

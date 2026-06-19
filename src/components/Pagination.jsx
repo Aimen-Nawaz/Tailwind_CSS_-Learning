@@ -63,34 +63,13 @@ const PaginationComp = () => {
             <PaginationPrevious
               onClick={handlePrev}
               disabled={isPrevDisabled}
-              className="
-          rounded-xl
-          bg-slate-800
-          text-white
-          border border-slate-700
-          hover:bg-slate-700
-          hover:scale-105
-          transition-all
-          duration-300
-          shadow-md
-        "
+              className="  rounded-xl bg-slate-800 text-white border border-slate-700 hover:bg-slate-700 hover:scale-105 transition-all duration-300 shadow-md"
             />
           </PaginationItem>
 
           <PaginationItem>
             <div
-              className="
-          h-11 w-11
-          flex items-center justify-center
-          rounded-full
-          bg-linear-to-r
-          from-violet-600
-          to-indigo-600
-          text-white
-          font-bold
-          shadow-lg
-          shadow-violet-500/30
-        "
+              className=" h-10 w-10 flex items-center justify-center rounded-full bg-linear-to-r from-violet-600 to-indigo-500  text-white  font-bold shadow-lg shadow-violet-500/30"
             >
               {page}
             </div>
@@ -99,18 +78,7 @@ const PaginationComp = () => {
           <PaginationItem>
             <PaginationNext
               onClick={handleNext}
-              disabled={isNextDisabled}
-              className="
-          rounded-xl
-          bg-slate-800
-          text-white
-          border border-slate-700
-          hover:bg-slate-700
-          hover:scale-105
-          transition-all
-          duration-300
-          shadow-md
-        "
+              disabled={isNextDisabled} className="rounded-xl  bg-slate-800 text-white border border-slate-700  hover:bg-slate-700  hover:scale-105  transition-all  duration-300 shadow-md "
             />
           </PaginationItem>
         </PaginationContent>

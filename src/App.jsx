@@ -8,28 +8,36 @@ import Posts from "./components/Posts/Posts"
 import PostDetails from "./components/Posts/PostDetails";
 import PageProvider from "./context/PageContext";
 import FilterProvider from "./context/FilterContext";
+import CartProvider from "./context/CartContext";
+import Users from "./components/User/Users";
+import PartyForm from "./components/User/PartyForm";
+import Forms from"./components/User/Forms";
 
 function App() {
   return (
     <BrowserRouter>
       <PageProvider>
-        <Routes>
-          <Route path="/" element={<PageLayout />}>
+        <CartProvider>
+          <Routes>
+            <Route path="/" element={<PageLayout />}>
 
-            <Route index element={<HomePage />} />
+              <Route index element={<HomePage />} />
 
-            {/* product Routes */}
-            <Route path="products" element={<FilterProvider><Product/></FilterProvider>} /> 
-            <Route path="/product/:id" element={<ProductDetail />} />
+              {/* product Routes */}
+              <Route path="products" element={<FilterProvider><Product /></FilterProvider>} />
+              <Route path="/product/:id" element={<ProductDetail />} />
 
-            {/* Post Routes */}
-            <Route path="posts" element={<FilterProvider><Posts /></FilterProvider>} />
-            <Route path="post/:id" element={<PostDetails />} />
+              {/* Post Routes */}
+              <Route path="posts" element={<FilterProvider><Posts /></FilterProvider>} />
+              <Route path="post/:id" element={<PostDetails />} />
+ 
+              <Route path="users" element={<Users  />} />
+              <Route path="form" element={<PartyForm/>} />
+               <Route path="registration" element={<Forms/>}/>
 
-            <Route path="users" element={<p>Users</p>} />
-
-          </Route>
-        </Routes>
+            </Route>
+          </Routes>
+        </CartProvider>
       </PageProvider>
     </BrowserRouter>
   );

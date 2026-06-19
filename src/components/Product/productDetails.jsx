@@ -1,9 +1,17 @@
 import React from "react";
+import { useCart } from "../../context/CartContext";
+import { toast } from "sonner";
 
 const productDetails = ({ product }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    toast.success("Product added to cart!");
+  };
   return (
     <div className="w-1/2 text-white mt-9 items-center">
-      
+
       <h2 className="text-xl font-bold">{product.title}</h2>
 
       <p className="text-green-500 font-bold text-lg mt-2">
@@ -32,7 +40,7 @@ const productDetails = ({ product }) => {
         className="w-full rounded-lg bg-[#272626] border border-gray-700 px-4 py-2 text-sm text-white mt-4"
       />
 
-      <button className="w-full mt-4 bg-white text-black py-2 rounded-lg font-semibold hover:bg-gray-200">
+      <button className="w-full mt-4 bg-white text-black py-2 rounded-lg font-semibold hover:bg-gray-200" onClick={handleAddToCart} >
         Add to Cart
       </button>
 
