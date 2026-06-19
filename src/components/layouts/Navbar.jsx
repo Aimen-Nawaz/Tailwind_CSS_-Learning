@@ -21,7 +21,7 @@ const Navbar = () => {
                         <li><Link to='/Posts'>Posts</Link></li>
                         <li><Link to='/users'>Users</Link></li>
                         <li><Link to='/form'>Forms</Link></li>
-                        <li><Link to='/registration'>Form</Link></li>
+                        <li><Link to='/registration'>Contact</Link></li>
                       
                     </ul>
                 </div>

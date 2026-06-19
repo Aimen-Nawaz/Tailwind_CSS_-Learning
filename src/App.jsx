@@ -11,7 +11,7 @@ import FilterProvider from "./context/FilterContext";
 import CartProvider from "./context/CartContext";
 import Users from "./components/User/Users";
 import PartyForm from "./components/User/PartyForm";
-import Forms from"./components/User/Forms";
+import Contact from"./components/User/Contact";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
  
               <Route path="users" element={<Users  />} />
               <Route path="form" element={<PartyForm/>} />
-               <Route path="registration" element={<Forms/>}/>
+               <Route path="registration" element={<Contact/>}/>
 
             </Route>
           </Routes>

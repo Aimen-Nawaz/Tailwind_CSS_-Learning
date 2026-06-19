@@ -167,7 +167,7 @@ function Contact() {
               )}
             />
 
-            {/* BUTTON */}
+    
             <button
               type="submit"
               className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold hover:scale-105 transition"
