@@ -1,13 +1,18 @@
 import { ShoppingCart } from 'lucide-react'
+import { Badge } from "@/components/ui/badge";
 import React from 'react'
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
-import { useCart } from '../../context/CartContext'
+import { useCart } from '../../store/CartStore'
 import CartItemCard from '../Cart/CartItemCard'
 
 const Navbar = () => {
-    const { totalPrice, cartItems } = useCart();
+    const { totalPrice, cartItems } = useCart()
+    const cartCount = cartItems.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
     return (
         <header className='w-full px-3 py-3 bg-black opacity-50 '>
             <Sheet>
@@ -15,14 +20,26 @@ const Navbar = () => {
                     <h1 className='text-white'>Product App</h1>
 
                     <ul className='flex items-center justify-between gap-3 text-white'>
-                        <li><SheetTrigger asChild><ShoppingCart /></SheetTrigger></li>
+                        <li>
+                            <SheetTrigger asChild>
+                                <button className="relative flex items-center justify-center">
+                                    <ShoppingCart className="h-6 w-6 text-white" />
+
+                                    {cartCount > 0 && (
+                                        <Badge className="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 p-0 text-xs text-white">
+                                            {cartCount}
+                                        </Badge>
+                                    )}
+                                </button>
+                            </SheetTrigger>
+                        </li>
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/products'>Products</Link></li>
                         <li><Link to='/Posts'>Posts</Link></li>
                         <li><Link to='/users'>Users</Link></li>
                         <li><Link to='/form'>Forms</Link></li>
                         <li><Link to='/registration'>Contact</Link></li>
-                      
+
                     </ul>
                 </div>
                 <SheetContent className="bg-background text-foreground border-l border-border">

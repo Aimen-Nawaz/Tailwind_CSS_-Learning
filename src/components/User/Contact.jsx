@@ -93,7 +93,7 @@ function Contact() {
             </div>
           </div>
 
-          {/* RIGHT SIDE - FORM (CONTROLLER STYLE) */}
+      
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl p-8 shadow-lg space-y-6"
@@ -102,7 +102,7 @@ function Contact() {
               Send Message
             </h3>
 
-            {/* NAME */}
+            
             <Controller
               name="name"
               control={control}

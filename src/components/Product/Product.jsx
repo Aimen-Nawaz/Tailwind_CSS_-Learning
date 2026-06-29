@@ -9,16 +9,18 @@ import NotFound from "../pageLoader/notFound";
 import Pagination from "../Pagination";
 import { usePage } from "../../context/PageContext";
 import { useFilter } from "../../context/FilterContext";
+import { useProducts } from "../../store/ProductStore";
 
 const Product = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [products, setProducts] = useState([]);
+
+  const { products, setAllProducts, getAllProducts, loading } = useProducts();
 
   const { query, sortBy, orderBy, category } = useFilter();
 
 
 
-  const { page, skip, limit, setTotal } = usePage()
+  const { page, skip, limit } = usePage()
 
 
 
@@ -53,20 +55,20 @@ const Product = () => {
 
       const res = await axios.get(url);
 
-      setProducts(res.data.products || []);
+      setAllProducts(res.data.products || []);
       setTotal(res.data.total || 0);
     } catch (err) {
       console.error("Error:", err);
-      setProducts([]);
+      setAllProducts([]);
     } finally {
       setLoading(false);
     }
   };
 
-  
+
 
   useEffect(() => {
-    getProducts();
+    getAllProducts(limit, skip,query, category, sortBy, orderBy)
   }, [query, sortBy, orderBy, category, page, limit, skip]);
 
   if (loading && !query && !sortBy) return <Loader />;

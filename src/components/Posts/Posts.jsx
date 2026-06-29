@@ -9,10 +9,10 @@ import Loader from "../pageLoader/pageLoader";
 import NotFound from "../pageLoader/notFound";
 import { usePage } from "../../context/PageContext";
 import { useFilter } from "../../context/FilterContext";
+import { usePosts } from "../../store/PostStore";
 
 const Posts = () => {
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { posts,loading,total,getAllPosts,} = usePosts();
 
     const { query, sortBy, orderBy } = useFilter();
 
@@ -52,9 +52,10 @@ const Posts = () => {
         }
     };
 
-    useEffect(() => {
-        getPosts();
-    }, [query, sortBy, orderBy, page, skip, limit]);
+   useEffect(() => {
+  getAllPosts(limit, skip, query, sortBy, orderBy);
+       }, [limit, skip, query, sortBy, orderBy]);
+  
 
     if (loading && !query && !sortBy) return <Loader />;
     if (!posts) return <NotFound />;

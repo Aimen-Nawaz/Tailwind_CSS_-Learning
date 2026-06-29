@@ -37,7 +37,7 @@ const PartyForm = () => {
     };
 
     return (
-        <div className="min-h-screen w-full bg-linear-to-r from-pink-200 via-purple-200 to-indigo-200 flex items-center justify-center p-6">
+        <div className="w-full bg-linear-to-r from-pink-200 via-purple-200 to-indigo-200 flex items-center justify-center">
             <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-2xl border-amber-500">
                 <form
                     onSubmit={handleSubmit(onSubmit)}

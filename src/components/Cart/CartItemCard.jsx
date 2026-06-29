@@ -1,8 +1,10 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
-import { useCart } from '../../context/CartContext';
 import { Trash2 } from 'lucide-react';
+import {useCart} from '../../store/CartStore'
+
+
 
 const CartItemCard = ({ item }) => {
     const { updateQuantity, removeFromCart } = useCart();
@@ -14,7 +16,7 @@ const CartItemCard = ({ item }) => {
         removeFromCart(item.id);
         toast.error('Item removed from cart');
     };
-    const { cartItems, totalPrice } = useCart();
+    //const { cartItems, totalPrice } = useCart();
 
     return (
 
